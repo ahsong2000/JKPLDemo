@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building World'
+                build quietPeriod: 5, job: 'BuildJob'
+            }
+        }
+        stage('Develop') {
+            steps {
+                echo 'Developing World'
+                build quietPeriod: 5, job: 'DevJob'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing World'
+                build quietPeriod: 5, job: 'TestJob'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing World'
+                build quietPeriod: 5, job: 'JenkinsTest'
+            }
+        }
+    }
+}
